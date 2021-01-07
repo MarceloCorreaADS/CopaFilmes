@@ -17,14 +17,14 @@ namespace backend.Models
         public int Ano { get; }
         [Required]
         [Range(0, 10)]
-        public decimal Nota { get; }
+        public double Nota { get; }
     
         private Movie()
         {
 
         }
 
-        public Movie(string idMovie, string tituloMovie, int anoMovie, decimal notaMovie)
+        public Movie(string idMovie, string tituloMovie, int anoMovie, double notaMovie)
         {
             Id = idMovie;
             Titulo = tituloMovie;
