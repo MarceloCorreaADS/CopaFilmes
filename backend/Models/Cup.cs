@@ -22,10 +22,36 @@ namespace backend.Models
 
         public List<Movie> CupResult()
         {
-            List<Movie> RankedMovies = new List<Movie>();
-            List<Movie> NotRankedMovies = Movies;
-            
-            return RankedMovies;
+            Match match;
+            Movie matchWinner;
+            List<Movie> Semifinals = new List<Movie>();
+            List<Movie> final = new List<Movie>();
+            List<Movie> Ranked = new List<Movie>();
+
+            int j = Movies.Count();
+            for (int i = 0; i < (Movies.Count()/2); i++, j--)
+            {
+                match = new Match(Movies[i], Movies[j]);
+                matchWinner = match.MatchWinner();
+                Semifinals.Add(matchWinner);
+            }
+
+            for(int i = 0; i < (Semifinals.Count()/2); i += 2)
+            {
+                match = new Match(Movies[i], Movies[i+1]);
+                matchWinner = match.MatchWinner();
+                final.Add(matchWinner);
+            }
+
+            match = new Match(final[0], final[1]);
+            matchWinner = match.MatchWinner();
+
+            final.Remove(matchWinner);
+            Ranked.Add(matchWinner);
+
+            Ranked.Add(final[0]);
+
+            return Ranked;
         }
     }
 }

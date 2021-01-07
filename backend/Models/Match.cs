@@ -21,14 +21,14 @@ namespace backend.Models
             Movie2st = Movie2stMatch;
         }
 
-        public Movie MatchLoser()
+        public Movie MatchWinner()
         {
             // Regra de empate: Definido pela ordem alfabética.
             // Filmes já estão em ordem alfabética.
             // Se a nota do primeiro filme for maior ou igual a do segundo ele vence.
-            Movie loser = Movie1st.Nota >= Movie2st.Nota ? Movie1st : Movie2st;
+            Movie winner = Movie1st.Nota >= Movie2st.Nota ? Movie1st : Movie2st;
 
-            return loser;
+            return winner;
         }
     }
 }
