@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -9,15 +10,19 @@ namespace backend.Models
     public class Movie
     {
         [Required]
-        public string Id { get; }
+        [JsonProperty("id")]
+        public string Id { get; set; }
         [Required]
-        public string Titulo { get; }
+        [JsonProperty("titulo")]
+        public string Titulo { get; set; }
         [Required]
         [Range(1000,9999)]
-        public int Ano { get; }
+        [JsonProperty("ano")]
+        public int Ano { get; set; }
         [Required]
         [Range(0, 10)]
-        public double Nota { get; }
+        [JsonProperty("nota")]
+        public double Nota { get; set; }
     
         private Movie()
         {
