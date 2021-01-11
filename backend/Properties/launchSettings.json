@@ -21,7 +21,7 @@
       "commandName": "Project",
       "launchBrowser": true,
       "launchUrl": "movies",
-      "applicationUrl": "https://localhost:3001;http://localhost:3000",
+      "applicationUrl": "http://localhost:3333;https://localhost:3334",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
