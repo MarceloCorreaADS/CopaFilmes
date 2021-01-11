@@ -10,17 +10,15 @@ function MovieSelection() {
   async function handleSubmit(event) {
     event.preventDefault();
   }
-  // const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState([]);
 
-  // useEffect(() => {
-  //   api.get('movies').then(response => { 
-  //       const moviesApi = response.data;
+  useEffect(() => {
+    api.get('movies').then(response => { 
+        const moviesApi = response.data;
 
-  //     setMovies(moviesApi);
-
-  //     console.log("Teste" + movies);
-  //   })
-  // }, []);
+      setMovies(moviesApi);
+    })
+  }, []);
   return (
     <div id="page-movie-selection">
       <Header
@@ -41,18 +39,18 @@ function MovieSelection() {
                         </button>
               </div>
               <div className="movies-list">
-{/*                 
+                
               { movies.map(movies => {
                   return(
-                    <div className="movie-box">
-                      <label>
-                        <input type="checkbox" id="idMovie" name="movie" />
+                    <div key={movies.id}  className="movie-box">
+                      <label >
+                        <input  type="checkbox" id="idMovie" name="movie" />
                         <span className="movie-title">{movies.titulo}</span>
                         <span className="movie-year">{movies.ano}</span>
                       </label>
                     </div>
                   )
-                })}                 */}
+                })}                
               </div>
             </fieldset>
           </form>
