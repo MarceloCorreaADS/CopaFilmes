@@ -1,0 +1,69 @@
+.header{
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-primary);
+}
+
+.header .top-bar-container{
+    width: 90%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas: "backButton title ."; 
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-title-primary);
+    padding: 1.6rem 0;
+}
+
+.header .top-bar-container a{
+    grid-area: backButton;
+    height: 1rem;
+    width: 2.5rem;
+    border: 0;
+
+    cursor: pointer;
+
+    display: flex;
+    justify-content: left;
+    align-items: center;
+
+    transition: opacity 0.2s;
+}
+.header .top-bar-container a:hover{
+    opacity: 0.6;
+}
+
+.header .top-bar-container p{
+    grid-area: title;
+    font:700 2rem Archivo;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header .header-content {
+    width: 90%;
+    margin:  0 auto;
+    position: relative;
+    margin: 0rem auto 3.2rem;
+}
+
+.header .header-content strong{
+    font: 700 3.6rem Archivo;
+    line-height: 4.2rem;
+    color: var(--color-title-primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.header .header-content p{
+    padding-top: 4rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--color-title-primary);
+}

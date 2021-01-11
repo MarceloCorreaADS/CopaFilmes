@@ -1,0 +1,138 @@
+#page-movie-selection{
+    width: 100vw;
+    height: 100vh
+}
+
+#page-movie-selection main{
+    width: 100%;
+    max-width: 74rem;
+    margin: 1rem auto 3.2rem;
+  
+    background: #FFFFFF;
+    border: 1px solid #D3E2E5;
+    border-radius: 1rem;
+    padding: 1rem 1rem;
+    overflow: hidden;
+}
+
+form.movies-selection-form fieldset {
+    border: 0;
+    padding: 0 0.8rem;
+}
+
+form.movies-selection-form .top-bar-form{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    border-bottom: 1px solid #D3E2E5;
+    margin-bottom: 2.4rem;
+    padding-bottom: 2.4rem;
+}
+
+form.movies-selection-form fieldset legend {
+    width: 100%;
+  
+    font-size: 2rem;
+    line-height: 25px;
+    color: var(--color-secondary);
+    font-weight: 700;    
+}
+
+
+form.movies-selection-form  fieldset button.confirm-button {
+    width: 100%;
+    height: 60px;
+    font: 700 1.6rem;
+    max-width: 25rem;
+    border: 0;
+
+    background: var(--color-primary);
+    cursor: pointer;
+    border-radius: 1rem;
+    color: #FFFFFF;
+  
+    transition: background-color 0.2s;
+}
+
+form.movies-selection-form fieldset button.confirm-button:hover {
+    background: var(--color-secondary);
+}
+form.movies-selection-form fieldset .movies-list{
+    max-width: 100vw;
+    margin: 0 auto;
+    display: grid;
+    grid-gap: 1rem;
+}
+
+
+form.movies-selection-form fieldset .movies-list .movie-box{
+    background: #f0f0f7;
+    border: 1px solid #D3E2E5;
+    border-radius: 1rem;
+    padding: 1rem 1rem;
+    overflow: hidden;
+    margin-top: 2.4rem;
+}
+
+
+form.movies-selection-form fieldset .movies-list .movie-box label{
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: 
+        "checkbox movieTitle"
+        "checkbox movieYear"
+    ; 
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+}
+
+form.movies-selection-form fieldset .movies-list .movie-box label input{
+    grid-area: checkbox;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    margin-right: 1rem;
+}
+
+form.movies-selection-form fieldset .movies-list .movie-box label .movie-title{
+    grid-area: movieTitle;
+    font-size: 2rem;
+}
+
+form.movies-selection-form fieldset .movies-list .movie-box label .movie-year{
+    grid-area: movieYear;
+    font-size: 1.5rem;
+}
+
+
+@media (min-width: 500px) {
+    form.movies-selection-form .movies-list{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 700px){
+    #page-movie-selection{
+        max-width: 100vw;
+    }
+    
+    #page-movie-selection main{
+        max-width: 70vw;
+    }
+
+    form.movies-selection-form .movies-list{
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 900px) {
+    form.movies-selection-form .movies-list{
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+
+
