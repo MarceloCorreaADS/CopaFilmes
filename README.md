@@ -1,4 +1,4 @@
-# Copa Filmes
+# 🏆 Copa Filmes 🏆
 ![Copa Filmes](images/CopaFilmes.PNG)
 
 ## 🚀 Tecnologias
@@ -39,12 +39,12 @@ $ dotnet build
 $ dotnet run
 ```
 4. O projeto está configurado para abrir em [http://localhost:3333](http://localhost:3333) ou [https://localhost:3334](https://localhost:3334)
-
 5.Use o HTTP client com [Insomnia](https://insomnia.rest/download/) ou [Postman](https://www.postman.com/)
 
 ### 4. Rodando o Front-end (Web)
 1. Volte para a pasta raiz e acesse a pasta do front-end
 ```bash
+$ cd ..\
 $ cd web
 ```
 2. Instale as depêndencias
@@ -55,4 +55,4 @@ $ npm install
 ```bash
 $ npm start
 ```
-4. O front-end iniciará está configurado para abrir em [http://localhost:3000](http://localhost:3000)
+4. O front-end está configurado para iniciar em [http://localhost:3000](http://localhost:3000)
