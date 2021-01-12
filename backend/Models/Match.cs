@@ -8,18 +8,19 @@ namespace backend.Models
 {
     public class Match
     {
-        public Movie Movie1st;
-        public Movie Movie2st;
+        public Movie Movie1st { get; private set; }
+        public Movie Movie2st { get; private set; }
 
-        private Match()
+        public static Match New(Movie Movie1stMatch, Movie Movie2stMatch)
         {
+            if (Movie1stMatch is null) throw new ArgumentNullException(nameof(Movie1stMatch));
+            if (Movie2stMatch is null) throw new ArgumentNullException(nameof(Movie2stMatch));
 
-        }
-
-        public Match(Movie Movie1stMatch, Movie Movie2stMatch)
-        {
-            Movie1st = Movie1stMatch;
-            Movie2st = Movie2stMatch;            
+            return new Match
+            {
+                Movie1st = Movie1stMatch,
+                Movie2st = Movie2stMatch
+            };           
         }
 
         public Movie MatchWinner()

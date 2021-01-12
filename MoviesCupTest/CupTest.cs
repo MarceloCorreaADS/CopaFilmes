@@ -17,29 +17,42 @@ namespace MoviesCupTest
             List<Movie> MoviesCup = new List<Movie>();
             List<Movie> ReturnExpected = new List<Movie>();
 
-            MoviesCup.Add(new Movie("tt3606756", "Os Incríveis 2", 2018, 8.5));
-            MoviesCup.Add(new Movie("tt4881806", "Jurassic World: Reino Ameaçado", 2018, 6.7));
-            MoviesCup.Add(new Movie("tt5164214", "Oito Mulheres e um Segredo", 2018, 6.3));
-            MoviesCup.Add(new Movie("tt7784604", "Hereditário", 2018, 7.8));
-            MoviesCup.Add(new Movie("tt4154756", "Vingadores: Guerra Infinita", 2018, 8.8));
-            MoviesCup.Add(new Movie("tt5463162", "Deadpool 2", 2018, 8.1));
-            MoviesCup.Add(new Movie("tt3778644", "Han Solo: Uma História Star Wars", 2018, 7.2));
-            MoviesCup.Add(new Movie("tt3501632", "Thor: Ragnarok", 2017, 7.9));
+            MoviesCup.Add(Movie.New("tt3606756", "Os Incríveis 2", 2018, 8.5));
+            MoviesCup.Add(Movie.New("tt4881806", "Jurassic World: Reino Ameaçado", 2018, 6.7));
+            MoviesCup.Add(Movie.New("tt5164214", "Oito Mulheres e um Segredo", 2018, 6.3));
+            MoviesCup.Add(Movie.New("tt7784604", "Hereditário", 2018, 7.8));
+            MoviesCup.Add(Movie.New("tt4154756", "Vingadores: Guerra Infinita", 2018, 8.8));
+            MoviesCup.Add(Movie.New("tt5463162", "Deadpool 2", 2018, 8.1));
+            MoviesCup.Add(Movie.New("tt3778644", "Han Solo: Uma História Star Wars", 2018, 7.2));
+            MoviesCup.Add(Movie.New("tt3501632", "Thor: Ragnarok", 2017, 7.9));
 
-            ReturnExpected.Add(new Movie("tt5463162", "Deadpool 2", 2018, 8.1));
-            ReturnExpected.Add(new Movie("tt3778644", "Han Solo: Uma História Star Wars", 2018, 7.2));
-            ReturnExpected.Add(new Movie("tt7784604", "Hereditário", 2018, 7.8));
-            ReturnExpected.Add(new Movie("tt4881806", "Jurassic World: Reino Ameaçado", 2018, 6.7));
-            ReturnExpected.Add(new Movie("tt5164214", "Oito Mulheres e um Segredo", 2018, 6.3));
-            ReturnExpected.Add(new Movie("tt3606756", "Os Incríveis 2", 2018, 8.5));
-            ReturnExpected.Add(new Movie("tt3501632", "Thor: Ragnarok", 2017, 7.9));
-            ReturnExpected.Add(new Movie("tt4154756", "Vingadores: Guerra Infinita", 2018, 8.8));
+            ReturnExpected.Add(Movie.New("tt5463162", "Deadpool 2", 2018, 8.1));
+            ReturnExpected.Add(Movie.New("tt3778644", "Han Solo: Uma História Star Wars", 2018, 7.2));
+            ReturnExpected.Add(Movie.New("tt7784604", "Hereditário", 2018, 7.8));
+            ReturnExpected.Add(Movie.New("tt4881806", "Jurassic World: Reino Ameaçado", 2018, 6.7));
+            ReturnExpected.Add(Movie.New("tt5164214", "Oito Mulheres e um Segredo", 2018, 6.3));
+            ReturnExpected.Add(Movie.New("tt3606756", "Os Incríveis 2", 2018, 8.5));
+            ReturnExpected.Add(Movie.New("tt3501632", "Thor: Ragnarok", 2017, 7.9));
+            ReturnExpected.Add(Movie.New("tt4154756", "Vingadores: Guerra Infinita", 2018, 8.8));
 
-            Cup CupMovies = new Cup(MoviesCup);
+            Cup CupMovies = Cup.New();
 
-            List<Movie> CupMoviesOrdination = CupMovies.CupOrdination;
+            foreach(Movie movie in MoviesCup)
+            {
+                CupMovies.AddMovie(movie);
+            }
 
-            CollectionAssert.AreEqual(ReturnExpected, CupMoviesOrdination, new MovieListComparer(), "Copa ordenada incorretamente!");
+
+            CupMovies.CupResult();
+
+            List<Movie> response = new List<Movie>();
+
+            foreach (Movie movie in CupMovies.CupOrdination)
+            {
+                response.Add(movie);
+            }
+
+            CollectionAssert.AreEqual(ReturnExpected, response, new MovieListComparer(), "Copa ordenada incorretamente!");
         }
 
         [TestMethod]
@@ -48,58 +61,78 @@ namespace MoviesCupTest
             List<Movie> MoviesCup = new List<Movie>();
             List<Movie> ReturnExpected = new List<Movie>();
 
-            MoviesCup.Add(new Movie("tt3606756", "Os Incríveis 2", 2018, 8.5));
-            MoviesCup.Add(new Movie("tt4881806", "Jurassic World: Reino Ameaçado", 2018, 6.7));
-            MoviesCup.Add(new Movie("tt5164214", "Oito Mulheres e um Segredo", 2018, 6.3));
-            MoviesCup.Add(new Movie("tt7784604", "Hereditário", 2018, 7.8));
-            MoviesCup.Add(new Movie("tt4154756", "Vingadores: Guerra Infinita", 2018, 8.8));
-            MoviesCup.Add(new Movie("tt5463162", "Deadpool 2", 2018, 8.1));
-            MoviesCup.Add(new Movie("tt3778644", "Han Solo: Uma História Star Wars", 2018, 7.2));
-            MoviesCup.Add(new Movie("tt3501632", "Thor: Ragnarok", 2017, 7.9));
+            MoviesCup.Add(Movie.New("tt3606756", "Os Incríveis 2", 2018, 8.5));
+            MoviesCup.Add(Movie.New("tt4881806", "Jurassic World: Reino Ameaçado", 2018, 6.7));
+            MoviesCup.Add(Movie.New("tt5164214", "Oito Mulheres e um Segredo", 2018, 6.3));
+            MoviesCup.Add(Movie.New("tt7784604", "Hereditário", 2018, 7.8));
+            MoviesCup.Add(Movie.New("tt4154756", "Vingadores: Guerra Infinita", 2018, 8.8));
+            MoviesCup.Add(Movie.New("tt5463162", "Deadpool 2", 2018, 8.1));
+            MoviesCup.Add(Movie.New("tt3778644", "Han Solo: Uma História Star Wars", 2018, 7.2));
+            MoviesCup.Add(Movie.New("tt3501632", "Thor: Ragnarok", 2017, 7.9));
 
 
-            ReturnExpected.Add(new Movie("tt4154756", "Vingadores: Guerra Infinita", 2018, 8.8));
-            ReturnExpected.Add(new Movie("tt3501632", "Thor: Ragnarok", 2017, 7.9));
-            ReturnExpected.Add(new Movie("tt3606756", "Os Incríveis 2", 2018, 8.5));
-            ReturnExpected.Add(new Movie("tt4881806", "Jurassic World: Reino Ameaçado", 2018, 6.7));
-          
-            Cup CupMovies = new Cup(MoviesCup);
+            ReturnExpected.Add(Movie.New("tt4154756", "Vingadores: Guerra Infinita", 2018, 8.8));
+            ReturnExpected.Add(Movie.New("tt3501632", "Thor: Ragnarok", 2017, 7.9));
+            ReturnExpected.Add(Movie.New("tt3606756", "Os Incríveis 2", 2018, 8.5));
+            ReturnExpected.Add(Movie.New("tt4881806", "Jurassic World: Reino Ameaçado", 2018, 6.7));
+
+            Cup CupMovies = Cup.New();
+
+            foreach (Movie movie in MoviesCup)
+            {
+                CupMovies.AddMovie(movie);
+            }
 
             CupMovies.CupResult();
 
-            List<Movie> CupMoviesSemifinals = CupMovies.Semifinals;
+            List<Movie> response = new List<Movie>();
 
-            CollectionAssert.AreEqual(ReturnExpected, CupMoviesSemifinals, new MovieListComparer(), "Partidas semifnais incorretas!");
+            foreach (Movie movie in CupMovies.Semifinals)
+            {
+                response.Add(movie);
+            }
+
+            CollectionAssert.AreEqual(ReturnExpected, response, new MovieListComparer(), "Partidas semifnais incorretas!");
         }
 
         [TestMethod]
-        public void finalsResultsIsCorrect()
+        public void FinalsResultsIsCorrect()
         {
             List<Movie> MoviesCup = new List<Movie>();
             List<Movie> ReturnExpected = new List<Movie>();
 
-            MoviesCup.Add(new Movie("tt3606756", "Os Incríveis 2", 2018, 8.8));
-            MoviesCup.Add(new Movie("tt4881806", "Jurassic World: Reino Ameaçado", 2018, 6.7));
-            MoviesCup.Add(new Movie("tt5164214", "Oito Mulheres e um Segredo", 2018, 6.3));
-            MoviesCup.Add(new Movie("tt7784604", "Hereditário", 2018, 7.8));
-            MoviesCup.Add(new Movie("tt4154756", "Vingadores: Guerra Infinita", 2018, 8.8));
-            MoviesCup.Add(new Movie("tt5463162", "Deadpool 2", 2018, 8.1));
-            MoviesCup.Add(new Movie("tt3778644", "Han Solo: Uma História Star Wars", 2018, 7.2));
-            MoviesCup.Add(new Movie("tt3501632", "Thor: Ragnarok", 2017, 7.9));
+            MoviesCup.Add(Movie.New("tt3606756", "Os Incríveis 2", 2018, 8.8));
+            MoviesCup.Add(Movie.New("tt4881806", "Jurassic World: Reino Ameaçado", 2018, 6.7));
+            MoviesCup.Add(Movie.New("tt5164214", "Oito Mulheres e um Segredo", 2018, 6.3));
+            MoviesCup.Add(Movie.New("tt7784604", "Hereditário", 2018, 7.8));
+            MoviesCup.Add(Movie.New("tt4154756", "Vingadores: Guerra Infinita", 2018, 8.8));
+            MoviesCup.Add(Movie.New("tt5463162", "Deadpool 2", 2018, 8.1));
+            MoviesCup.Add(Movie.New("tt3778644", "Han Solo: Uma História Star Wars", 2018, 7.2));
+            MoviesCup.Add(Movie.New("tt3501632", "Thor: Ragnarok", 2017, 7.9));
 
             
-            ReturnExpected.Add(new Movie("tt4154756", "Vingadores: Guerra Infinita", 2018, 8.8));
-            ReturnExpected.Add(new Movie("tt3606756", "Os Incríveis 2", 2018, 8.8));
+            ReturnExpected.Add(Movie.New("tt4154756", "Vingadores: Guerra Infinita", 2018, 8.8));
+            ReturnExpected.Add(Movie.New("tt3606756", "Os Incríveis 2", 2018, 8.8));
 
 
 
-            Cup CupMovies = new Cup(MoviesCup);
+            Cup CupMovies = Cup.New();
+
+            foreach (Movie movie in MoviesCup)
+            {
+                CupMovies.AddMovie(movie);
+            }
 
             CupMovies.CupResult();
 
-            List<Movie> CupMoviesfinals = CupMovies.Finals;
+            List<Movie> response = new List<Movie>();
 
-            CollectionAssert.AreEqual(ReturnExpected, CupMoviesfinals, new MovieListComparer(), "Partida final incorreta!");
+            foreach (Movie movie in CupMovies.Finals)
+            {
+                response.Add(movie);
+            }
+
+            CollectionAssert.AreEqual(ReturnExpected, response, new MovieListComparer(), "Partida final incorreta!");
         }
 
         [TestMethod]
@@ -108,25 +141,37 @@ namespace MoviesCupTest
             List<Movie> MoviesCup = new List<Movie>();
             List<Movie> ReturnExpected = new List<Movie>();
 
-            MoviesCup.Add(new Movie("tt3606756", "Os Incríveis 2", 2018, 8.5));
-            MoviesCup.Add(new Movie("tt4881806","Jurassic World: Reino Ameaçado",2018,6.7));
-            MoviesCup.Add(new Movie("tt5164214","Oito Mulheres e um Segredo",2018,6.3));
-            MoviesCup.Add(new Movie("tt7784604","Hereditário",2018,7.8));
-            MoviesCup.Add(new Movie("tt4154756","Vingadores: Guerra Infinita",2018,8.8));
-            MoviesCup.Add(new Movie("tt5463162","Deadpool 2",2018,8.1));
-            MoviesCup.Add(new Movie("tt3778644","Han Solo: Uma História Star Wars",2018,7.2));
-            MoviesCup.Add(new Movie("tt3501632","Thor: Ragnarok",2017,7.9));
+            MoviesCup.Add(Movie.New("tt3606756", "Os Incríveis 2", 2018, 8.5));
+            MoviesCup.Add(Movie.New("tt4881806","Jurassic World: Reino Ameaçado",2018,6.7));
+            MoviesCup.Add(Movie.New("tt5164214","Oito Mulheres e um Segredo",2018,6.3));
+            MoviesCup.Add(Movie.New("tt7784604","Hereditário",2018,7.8));
+            MoviesCup.Add(Movie.New("tt4154756","Vingadores: Guerra Infinita",2018,8.8));
+            MoviesCup.Add(Movie.New("tt5463162","Deadpool 2",2018,8.1));
+            MoviesCup.Add(Movie.New("tt3778644","Han Solo: Uma História Star Wars",2018,7.2));
+            MoviesCup.Add(Movie.New("tt3501632","Thor: Ragnarok",2017,7.9));
 
             
-            ReturnExpected.Add(new Movie("tt4154756", "Vingadores: Guerra Infinita",2018,8.8));
-            ReturnExpected.Add(new Movie("tt3606756", "Os Incríveis 2", 2018, 8.8));
+            ReturnExpected.Add(Movie.New("tt4154756", "Vingadores: Guerra Infinita",2018,8.8));
+            ReturnExpected.Add(Movie.New("tt3606756", "Os Incríveis 2", 2018, 8.8));
 
 
-            Cup CupMovies = new Cup(MoviesCup);
+            Cup CupMovies = Cup.New();
 
-            List<Movie> ResultCup = CupMovies.CupResult();
+            foreach (Movie movie in MoviesCup)
+            {
+                CupMovies.AddMovie(movie);
+            }
 
-            CollectionAssert.AreEqual(ReturnExpected, ResultCup, new MovieListComparer(), "Lista Final incorreta");
+            CupMovies.CupResult();
+
+            List<Movie> response = new List<Movie>();
+
+            foreach (Movie movie in CupMovies.FinalResult)
+            {
+                response.Add(movie);
+            }
+
+            CollectionAssert.AreEqual(ReturnExpected, response, new MovieListComparer(), "Lista Final incorreta");
             
         }
 

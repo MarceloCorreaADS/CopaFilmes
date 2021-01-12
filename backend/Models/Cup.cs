@@ -8,37 +8,70 @@ namespace backend.Models
 {
     public class Cup
     {
-        public List<Movie> Movies;
-        public Movie Winner;
-        public Movie SecondPlace;
-        public List<Movie> CupOrdination;
-        public List<Movie> Semifinals;
-        public List<Movie> Finals;
+        public Movie Winner { get; private set; }
+        public Movie SecondPlace { get; private set; }
+
+
+        private List<Movie> _movies; // o original é privado e só pode ser modificado por essa classe
+        public IEnumerable<Movie> Movies => _movies.AsReadOnly(); // Copia exposta apenas para leitura
+
+        private List<Movie> _cupOrdination; // o original é privado e só pode ser modificado por essa classe
+        public IEnumerable<Movie> CupOrdination => _cupOrdination.AsReadOnly(); // Copia exposta apenas para leitura
+
+        private List<Movie> _semifinals; // o original é privado e só pode ser modificado por essa classe
+        public IEnumerable<Movie> Semifinals => _semifinals.AsReadOnly(); // Copia exposta apenas para leitura
+
+        private List<Movie> _finals; // o original é privado e só pode ser modificado por essa classe
+        public IEnumerable<Movie> Finals => _finals.AsReadOnly(); // Copia exposta apenas para leitura
+
+        private List<Movie> _finalResult; // o original é privado e só pode ser modificado por essa classe
+        public IEnumerable<Movie> FinalResult => _finalResult.AsReadOnly(); // Copia exposta apenas para leitura
+
+
+        
 
         private Cup()
         {
 
         }
 
-        public Cup(List<Movie> cupMovies)
+        public static Cup New()
         {
-            // Recebendo a lista de filmes participantes ja à ordeno em ordem alfabética.
-            Movies = cupMovies;
-            CupOrdination = Movies.OrderBy(m => m.Titulo.Trim()).ToList();
-            Semifinals = new List<Movie>();
-            Finals = new List<Movie>();
+            // Metodo que cria a copa iniciando as listas
 
+            return new Cup
+            {
+                _finalResult = new List<Movie>(),
+                _movies = new List<Movie>(),
+                _semifinals = new List<Movie>(),
+                _finals = new List<Movie>()
+            };
         }
 
-        public List<Movie> CupResult()
+        public void AddMovie(Movie movie)
         {
+            //metodo para adicionar novos filmes à copa
+            if(movie is null) throw new ArgumentNullException(nameof(movie));
+
+            //verifico se ja foi atingida a quantidade máxima de filmes na copa
+            if (_movies.Count == 8) throw new InvalidOperationException("Movies quantity already complete!");
+            _movies.Add(movie);
+        }
+            
+            
+
+        public void CupResult()
+        {
+            if (_movies.Count != 8) throw new InvalidOperationException("Incorrect movies quantity!");
+
+            _cupOrdination = _movies.OrderBy(m => m.Titulo.Trim()).ToList();
+
             //Variaveis auxiliares
             Match match;
             Movie matchWinner;
             List<Movie> finalsAux = new List<Movie>();
-            List<Movie> Ranked = new List<Movie>();
 
-            int CupRange = CupOrdination.Count() - 1;
+            int CupRange = _cupOrdination.Count() - 1;
 
             //Verifico o tamanho da lista
             int j = CupRange;
@@ -47,25 +80,26 @@ namespace backend.Models
             for (int i = 0; i <= (CupRange/2); i++, j--)
             {
                 //definição da partida - primeiro enfrenta o ultimo, segundo o penultimo e assim por diante
-                match = new Match(CupOrdination[i], CupOrdination[j]);
+                match = Match.New(_cupOrdination[i], _cupOrdination[j]);
                 matchWinner = match.MatchWinner();
                 // lista com os Filmes da semifinal
-                Semifinals.Add(matchWinner);
+                _semifinals.Add(matchWinner);
             }
 
             for(int i = 0; i <= ((Semifinals.Count())/2); i += 2)
             {
-                match = new Match(Semifinals[i], Semifinals[i+1]);
+                match = Match.New(_semifinals[i], _semifinals[i+1]);
                 matchWinner = match.MatchWinner();
-                Finals.Add(matchWinner);
+                _finals.Add(matchWinner);
             }
 
             //Partida final
-            match = new Match(Finals[0], Finals[1]);
+            match = Match.New(_finals[0], _finals[1]);
             //Guardo o vencedor na propriedade da classe
             Winner = match.MatchWinner();
-            //Adiciono o vencedor na lista de retorno primeiro para ser o indice 0 da lista
-            Ranked.Add(Winner);
+
+            //Adiciono o vencedor na lista de Resultado primeiro para ser o indice 0 da lista
+            _finalResult.Add(Winner);
 
             //Usado variavel auxiliar para não perder ordenação da Final
             foreach(Movie m in Finals)
@@ -74,14 +108,13 @@ namespace backend.Models
             }
             //Removo o vencedor para saber quem é o segundo lugar
             finalsAux.Remove(Winner);
+
             //Salvo o segundo lugar na propriedade da classe
             SecondPlace = finalsAux[0];
 
-            //adiciono o segundo lugar na lista de retorno 
-            Ranked.Add(SecondPlace);
+            //adiciono o segundo lugar na lista de resultado
+            _finalResult.Add(SecondPlace);
 
-            //Ranked[0] = Winner / Ranked[1] = SecondPlace
-            return Ranked;
         }
     }
 }

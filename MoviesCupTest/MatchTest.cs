@@ -9,10 +9,10 @@ namespace MoviesCupTest
         [TestMethod]
         public void ReturnRightMovieWinner()
         {
-            Movie movieExpected = new Movie("tt1", "Teste 1", 2005, 9.9);
-            Movie movieLoser = new Movie("tt2", "Teste 2", 2009, 5.9);
+            Movie movieExpected = Movie.New("tt1", "Teste 1", 2005, 9.9);
+            Movie movieLoser = Movie.New("tt2", "Teste 2", 2009, 5.9);
 
-            Match match = new Match(movieLoser, movieExpected);
+            Match match = Match.New(movieLoser, movieExpected);
 
             Movie winner = match.MatchWinner();
 

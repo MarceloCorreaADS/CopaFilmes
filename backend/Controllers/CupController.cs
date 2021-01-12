@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Net.Http;
-using System.Threading.Tasks;
 using backend.DTO;
 using backend.Models;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -22,11 +19,23 @@ namespace backend.Controllers
         {
             try
             {
-                Cup cup = new Cup(movies.Movies);
+                Cup cup = Cup.New();
 
-                List<Movie> cupResult = cup.CupResult();
+               foreach(Movie movie in movies.Movies)
+               {
+                    cup.AddMovie(movie);
+               }
 
-                return cupResult;
+                cup.CupResult();
+
+                List<Movie> response = new List<Movie>();
+
+                foreach (Movie movie in cup.FinalResult)
+                {
+                    response.Add(movie);
+                }
+
+                return response;
             }
             catch (Exception ex)
             {

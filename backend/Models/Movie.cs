@@ -29,12 +29,22 @@ namespace backend.Models
 
         }
 
-        public Movie(string idMovie, string tituloMovie, int anoMovie, double notaMovie)
+        public static Movie New(string idMovie, string tituloMovie, int anoMovie, double notaMovie)
         {
-            Id = idMovie;
-            Titulo = tituloMovie;
-            Ano = anoMovie;
-            Nota = notaMovie;
+
+            if (string.IsNullOrWhiteSpace(idMovie)) throw new ArgumentNullException(nameof(idMovie));
+            if (string.IsNullOrWhiteSpace(tituloMovie)) throw new ArgumentNullException(nameof(tituloMovie));
+            if (anoMovie <= 0) throw new ArgumentOutOfRangeException(nameof(anoMovie));
+            if (notaMovie < 0.0 || notaMovie > 10) throw new ArgumentOutOfRangeException(nameof(notaMovie));
+
+            return new Movie
+            {
+                Id = idMovie,
+                Titulo = tituloMovie,
+                Ano = anoMovie,
+                Nota = notaMovie
+            };
+            
         }
     }
 }

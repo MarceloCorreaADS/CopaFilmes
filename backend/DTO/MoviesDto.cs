@@ -11,5 +11,10 @@ namespace backend.DTO
     {
         [JsonProperty("movies")]
         public List<Movie> Movies { get; set; }
+
+        public MoviesDto()
+        {
+
+        }
     }
 }
