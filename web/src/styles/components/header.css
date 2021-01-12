@@ -20,7 +20,7 @@
 .header .top-bar-container a{
     grid-area: backButton;
     height: 1rem;
-    width: 2.5rem;
+    width: 5rem;
     border: 0;
 
     cursor: pointer;

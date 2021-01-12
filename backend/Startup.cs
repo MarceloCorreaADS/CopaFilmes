@@ -26,10 +26,6 @@ namespace backend
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            //services.AddCors(option => {
-            //    option.AddPolicy("AllowAnyOrigin", policy => policy.AllowAnyOrigin());
-            //    option.AddPolicy("AllowAnyMethod", policy => policy.AllowAnyMethod());
-            //});
 
             services.AddCors(options =>
             {
@@ -47,10 +43,6 @@ namespace backend
             {
                 app.UseDeveloperExceptionPage();
             }
-
-            //app.UseCors("AllowAnyOrigin");
-            //app.UseCors("AllowAnyMethod");
-            //app.UseCors(option => option.AllowAnyHeader()); 
 
             app.UseCors("CorsPolicy");
 

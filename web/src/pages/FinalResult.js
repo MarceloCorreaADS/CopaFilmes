@@ -13,22 +13,29 @@ function MovieSelection(props) {
   useEffect(() => {
       api.post('cup', {'movies': params}).then(response => { 
       setCupResult(response.data);
-    })
+    }).catch(error => { alert("Erro no servidor, por favor tente novamente mais tarde!") });
   }, []);
   return (
-    <div id="page-movie-selection">
+    <div id="page-final-result">
       <Header
         title="Campeonato de Filmes"
-        subtitle="Resultado de Final"
+        subtitle="Resultado Final"
         description="
-              Veja o resultado dfinal do Campeonato de filmes de forma simples e rápida
+              Veja o resultado final do Campeonato de filmes de forma simples e rápida
             "
         goBack={true} />
       <div>
         <main>
-          { cupResult.map(movie => {
+          { cupResult.map((movie, index) => {
             return(
-              <p>{movie.titulo}</p>
+              <div key={movie.id} className="movie-result-box">
+                <div className="positionResult">
+                  <span>{index+1}º</span>
+                </div>
+                <div className="titleResult">
+                  <span>{movie.titulo}</span>
+                </div>
+              </div>
             )
           })}
         </main>

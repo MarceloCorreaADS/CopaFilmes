@@ -11,7 +11,7 @@ export default function Header(props) {
       <div className="top-bar-container">
         { props.goBack ? 
             <a onClick={goBack}>
-              <FiArrowLeft size={24} color="#FFF" />
+              <FiArrowLeft size={35} color="#FFF" />
             </a>
           : null
         }

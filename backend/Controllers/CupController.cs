@@ -33,23 +33,5 @@ namespace backend.Controllers
                 throw ex;
             }
         }
-
-        HttpClient client = new HttpClient();
-        // GET: /movies>
-        [HttpGet]
-        public async Task<List<Movie>> GetAllMovies()
-        {
-            try
-            {
-                string url = "http://copafilmes.azurewebsites.net/api/filmes";
-                var response = await client.GetStringAsync(url);
-                var movies = JsonConvert.DeserializeObject<List<Movie>>(response);
-                return movies;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
     }
 }
