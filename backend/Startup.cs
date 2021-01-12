@@ -26,7 +26,18 @@ namespace backend
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddCors();
+            //services.AddCors(option => {
+            //    option.AddPolicy("AllowAnyOrigin", policy => policy.AllowAnyOrigin());
+            //    option.AddPolicy("AllowAnyMethod", policy => policy.AllowAnyMethod());
+            //});
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy", builder => builder
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader());
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -37,7 +48,11 @@ namespace backend
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseCors(option => option.AllowAnyOrigin()); ;
+            //app.UseCors("AllowAnyOrigin");
+            //app.UseCors("AllowAnyMethod");
+            //app.UseCors(option => option.AllowAnyHeader()); 
+
+            app.UseCors("CorsPolicy");
 
             app.UseRouting();
 

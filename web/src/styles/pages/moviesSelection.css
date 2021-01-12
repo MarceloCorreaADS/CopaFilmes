@@ -40,22 +40,27 @@ form.movies-selection-form fieldset legend {
 }
 
 
-form.movies-selection-form  fieldset button.confirm-button {
+form.movies-selection-form  fieldset .confirm-button {
     width: 100%;
     height: 60px;
     font: 700 1.6rem;
     max-width: 25rem;
     border: 0;
+    text-decoration: none;
 
     background: var(--color-primary);
     cursor: pointer;
     border-radius: 1rem;
     color: #FFFFFF;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
   
     transition: background-color 0.2s;
 }
 
-form.movies-selection-form fieldset button.confirm-button:hover {
+form.movies-selection-form fieldset .confirm-button:hover {
     background: var(--color-secondary);
 }
 form.movies-selection-form fieldset .movies-list{
@@ -72,13 +77,18 @@ form.movies-selection-form fieldset .movies-list .movie-box{
     border-radius: 1rem;
     padding: 1rem 1rem;
     overflow: hidden;
-    margin-top: 2.4rem;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+form.movies-selection-form fieldset .movies-list .movie-box span{
+    margin-top: 0;
 }
 
 
 form.movies-selection-form fieldset .movies-list .movie-box label{
     display: grid;
-    grid-template-rows: 1fr 1fr;
     grid-template-areas: 
         "checkbox movieTitle"
         "checkbox movieYear"
@@ -86,6 +96,7 @@ form.movies-selection-form fieldset .movies-list .movie-box label{
     flex-direction: row;
     justify-content: left;
     align-items: center;
+    max-width: 100vw;
 }
 
 form.movies-selection-form fieldset .movies-list .movie-box label input{
